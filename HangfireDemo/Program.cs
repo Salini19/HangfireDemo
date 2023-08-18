@@ -34,5 +34,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseHangfireDashboard();
+app.MapHangfireDashboard();
+
+RecurringJob.AddOrUpdate<Imethods>(x => x.SyncData(), cronExpression: "0 * * ? * *");
+
 
 app.Run();
